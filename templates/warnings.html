@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+    <h1 class="h2">C?nh b�o gian l?n</h1>
+</div>
+
+<div class="table-responsive">
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Th?i gian</th>
+                <th>Sinh vi�n</th>
+                <th>M�n h?c</th>
+                <th>Lo?i</th>
+                <th>Tr?ng th�i</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for warn in warnings %}
+            <tr>
+                <td>{{ warn.Thoi_gian_phat_hien.strftime('%d/%m/%Y %H:%M') }}</td>
+                <td>{{ warn.Ho_ten }} ({{ warn.MSSV }})</td>
+                <td>{{ warn.Ten_mon_hoc }}</td>
+                <td>{{ warn.Loai_canh_bao }}</td>
+                <td>
+                    <span class="badge bg-{{ 'success' if warn.Trang_thai == '�? x? l?' else 'warning' }}">
+                        {{ warn.Trang_thai }}
+                    </span>
+                </td>
+            </tr>
+            {% else %}
+            <tr>
+                <td colspan="5" class="text-center">Kh�ng c� c?nh b�o</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}
